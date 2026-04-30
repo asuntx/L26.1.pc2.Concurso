@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concurso UCLA - HTML Plano</title>
+</head>
+
+<body>
+    <section id="body">
+        <h2>Gestión de Concurso (MVC Plano)</h2>
+        <button id="body_btNuevoAspirante">Registrar Nuevo Aspirante</button>
+        <hr />
+        <div>
+            <p>
+                <strong>R1- Candidato Seleccionado: </strong>
+                <span id="lblAspiranteContratar" style="color: blue; font-weight: bold;">-</span>
+            </p>
+            <p>
+                <span>Mejor Puntaje: </span>
+                <span id="lblMejorPuntaje">0.00</span>
+            </p>
+
+            <p><strong>R2- Listado de Aspirantes:</strong></p>
+            <div id="lblListaAspirantes" style="border: 1px solid #ccc; padding: 10px; background: #fff; min-height: 20px;">
+                Esperando registros...
+            </div>
+
+            <p>
+                <strong>R3- Peso promedio:</strong>
+                <span id="lblPesoPromedio">0.00 kg</span>
+            </p>
+        </div>
+    </section>
+
+    <section id="aspirante" hidden style="margin-top: 20px; border: 2px solid #333; padding: 15px; width: 400px; background-color: #f0f0f0;">
+        <h3>Datos del Aspirante</h3>
+
+        <div style="margin-top: 10px">
+            <label>Nombre: <input type="text" id="aspirante_inNombre" /></label>
+        </div>
+        <div style="margin-top: 10px">
+            <label>Apellido: <input type="text" id="aspirante_inApellido" /></label>
+        </div>
+        <div style="margin-top: 10px">
+            <label>Cédula: <input type="text" id="aspirante_inCedula" /></label>
+        </div>
+        <div style="margin-top: 10px">
+            <label>Sexo:
+                <select id="aspirante_inSexo">
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+            </label>
+        </div>
+        <div style="margin-top: 10px">
+            <label>Fecha Nacimiento: <input type="date" id="aspirante_inFechaNacimiento" /></label>
+        </div>
+        <div style="margin-top: 10px">
+            <label>Peso (kg): <input type="number" id="aspirante_inPeso" step="0.1" /></label>
+        </div>
+        <hr>
+        <div style="margin-top: 10px">
+            <label>Puntos Índice (0-25): <input type="number" id="aspirante_inIndiceA" /></label>
+        </div>
+        <div style="margin-top: 10px">
+            <label>Puntos Preparador (0-15): <input type="number" id="aspirante_inPreparador" /></label>
+        </div>
+        <div style="margin-top: 10px">
+            <label>Puntos Diploma (0-10): <input type="number" id="aspirante_inDiploma" /></label>
+        </div>
+
+        <div style="margin-top: 20px">
+            <button id="aspirante_btCancelar">Cancelar</button>
+            <button id="aspirante_btAceptar" style="background-color: #4caf50; color: white">Aceptar</button>
+        </div>
+    </section>
+
+    <script type="module">
+    import concurso from "./dist/principal.js";
+    import Cl_vConcurso from "./dist/views/Cl_vConcurso.js";
+    import Cl_vAspirante from "./dist/views/Cl_vAspirante.js";
+    import Cl_cAspirante from "./dist/controllers/Cl_cAspirante.js";
+    import Cl_cConcurso from "./dist/controllers/Cl_cConcurso.js";
+
+    const vConcurso = new Cl_vConcurso();
+    const vAspirante = new Cl_vAspirante();
+    // ... resto de la inicialización
+</script>
+</body>
+</html>
