@@ -1,10 +1,15 @@
 export interface I_vConcurso {
   onNuevoAspirante(callback: () => void): void;
 
-  reportar(datos: {
+  reportar({
+    aspiranteContratar,
+    listado,
+    promedioEdad,
+    totalPuntosSubTotal
+  }: {
     aspiranteContratar: string;
-    mejorPuntaje: number;
     listado: string;
-    pesoPromedio: number;
+    promedioEdad: number;
+    totalPuntosSubTotal: number;
   }): void;
 }

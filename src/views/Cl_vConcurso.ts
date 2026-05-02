@@ -3,16 +3,16 @@ import { I_vConcurso } from "../interfaces/I_vConcurso.js";
 export default class Cl_vConcurso implements I_vConcurso {
   private btNuevoAspirante: HTMLButtonElement;
   private lblAspiranteContratar: HTMLElement;
-  private lblMejorPuntaje: HTMLElement;
   private lblListaAspirantes: HTMLElement;
-  private lblPesoPromedio: HTMLElement; 
+  private lblPromedioEdad: HTMLElement;
+  private lblPuntosSubTotal: HTMLElement;
 
   constructor() {
-    this.btNuevoAspirante = document.getElementById("main_btNuevoAspirante") as HTMLButtonElement;
-    this.lblAspiranteContratar = document.getElementById("main_lblAspiranteContratar") as HTMLElement;
-    this.lblMejorPuntaje = document.getElementById("main_lblMejorPuntaje") as HTMLElement;
-    this.lblListaAspirantes = document.getElementById("main_listaAspirantes") as HTMLElement;
-    this.lblPesoPromedio = document.getElementById("main_lblPesoPromedio") as HTMLElement; // <--- Inicialización
+    this.btNuevoAspirante = document.getElementById("btNuevoAspirante") as HTMLButtonElement;
+    this.lblAspiranteContratar = document.getElementById("lblAspiranteContratar") as HTMLElement;
+    this.lblListaAspirantes = document.getElementById("lblListaAspirantes") as HTMLElement;
+    this.lblPromedioEdad = document.getElementById("lblPromedioEdad") as HTMLElement;
+    this.lblPuntosSubTotal = document.getElementById("lblPuntosSubTotal") as HTMLElement;
   }
 
   onNuevoAspirante(callback: () => void): void {
@@ -24,25 +24,18 @@ export default class Cl_vConcurso implements I_vConcurso {
 
   reportar({ 
     aspiranteContratar, 
-    mejorPuntaje, 
     listado, 
-    pesoPromedio 
+    promedioEdad,
+    totalPuntosSubTotal
   }: { 
     aspiranteContratar: string; 
-    mejorPuntaje: number; 
     listado: string; 
-    pesoPromedio: number; 
+    promedioEdad: number;
+    totalPuntosSubTotal: number;
   }): void {
     this.lblAspiranteContratar.innerHTML = aspiranteContratar || "Esperando datos...";
-    this.lblMejorPuntaje.innerHTML = mejorPuntaje.toFixed(2);
-    
-    if (this.lblPesoPromedio) {
-        this.lblPesoPromedio.innerHTML = `${pesoPromedio.toFixed(2)}`;
-    }
-
-    
-    if (this.lblListaAspirantes) {
-        this.lblListaAspirantes.innerHTML = listado;
-    }
+    this.lblPromedioEdad.innerHTML = promedioEdad.toFixed(2);
+    this.lblListaAspirantes.innerHTML = listado;
+    this.lblPuntosSubTotal.innerHTML = totalPuntosSubTotal.toString();
   }
 }

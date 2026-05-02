@@ -3,34 +3,36 @@ import Cl_mAspirante from "../models/Cl_mAspirante.js";
 
 export default class Cl_cAspirante {
   private vista: I_vAspirante;
-
+  private callback!: (aspirante: Cl_mAspirante | null) => void;
   constructor(vista: I_vAspirante) {
     this.vista = vista;
+    this.vista.onCancelar(() => this.btCancelarOnClick());
+    this.vista.onAceptar(() => this.btAceptarOnClick());
   }
 
   solicitarAspirante(callback: (aspirante: Cl_mAspirante | null) => void) {
+    this.callback = callback;
     this.vista.mostrar();
+  }
 
-    this.vista.onAceptar(() => {
-      const nuevoAspirante = new Cl_mAspirante({
+  private btCancelarOnClick() {
+    this.callback(null);
+    this.vista.ocultar();
+  }
+
+  private btAceptarOnClick() {
+    this.callback(
+      new Cl_mAspirante({
         nombre: this.vista.nombre,
         apellido: this.vista.apellido,
         cedula: this.vista.cedula,
         sexo: this.vista.sexo,
-        fechaNacimiento: this.vista.fechaNacimiento,
-        peso: this.vista.peso,
-        indiceA: this.vista.indiceA,
-        preparador: this.vista.preparador,
-        diploma: this.vista.diploma,
-      });
-
-      this.vista.ocultar();
-      callback(nuevoAspirante);
-    });
-
-    this.vista.onCancelar(() => {
-      this.vista.ocultar();
-      callback(null);
-    });
+        fechaNac: this.vista.fechaNac,
+        puntosIA: this.vista.puntosIA,
+        puntosPrep: this.vista.puntosPrep,
+        puntosDiplomas: this.vista.puntosDiplomas,
+      }),
+    );
+    this.vista.ocultar();
   }
 }

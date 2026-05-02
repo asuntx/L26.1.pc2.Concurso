@@ -3,13 +3,12 @@ export interface I_vAspirante {
     get apellido(): string;
     get cedula(): string; 
     get sexo(): string;
-    get fechaNacimiento(): string;
-    get peso(): number; 
-    get indiceA(): number;
-    get preparador(): number;
-    get diploma(): number;
-    onAceptar(callback: () => void): void;
-    onCancelar(callback: () => void): void;
+    get fechaNac(): string;
+    get puntosIA(): number;
+    get puntosPrep(): number;
+    get puntosDiplomas(): number;
     mostrar(): void;
     ocultar(): void;
+    onAceptar(callback: () => void): void;
+    onCancelar(callback: () => void): void;
 }

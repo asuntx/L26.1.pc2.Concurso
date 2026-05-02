@@ -3,37 +3,26 @@ export default class Cl_mPersona {
   private _apellido: string;
   private _cedula: string;
   private _sexo: string;
-  private _fechaNacimiento: string;
-  private _peso: number;
+  private _fechaNac: string;
 
   constructor({
     nombre,
     apellido,
     cedula,
     sexo,
-    fechaNacimiento,
-    peso,
+    fechaNac,
   }: {
     nombre: string;
     apellido: string;
     cedula: string;
     sexo: string;
-    fechaNacimiento: string;
-    peso: number;
+    fechaNac: string;
   }) {
     this._nombre = nombre;
     this._apellido = apellido;
     this._cedula = cedula;
     this._sexo = sexo;
-    this._fechaNacimiento = fechaNacimiento;
-    this._peso = peso;
-  }
-
-  set peso(value: number) {
-    this._peso = value;
-  }
-  get peso(): number {
-    return this._peso;
+    this._fechaNac = fechaNac;
   }
 
   set nombre(value: string) {
@@ -64,17 +53,16 @@ export default class Cl_mPersona {
     return this._sexo;
   }
 
-  set fechaNacimiento(value: string) {
-    this._fechaNacimiento = value;
+  set fechaNac(value: string) {
+    this._fechaNac = value;
   }
-  get fechaNacimiento(): string {
-    return this._fechaNacimiento;
+  get fechaNac(): string {
+    return this._fechaNac;
   }
 
-  // Dentro de Cl_mPersona.ts
-  edad(): number {
+  get edad(): number {
     let hoy = new Date();
-    let fechaNac = new Date(this.fechaNacimiento);
+    let fechaNac = new Date(this.fechaNac);
 
     let edad = hoy.getFullYear() - fechaNac.getFullYear();
     let mes = hoy.getMonth() - fechaNac.getMonth();

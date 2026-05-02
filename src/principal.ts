@@ -1,71 +1,116 @@
 import Cl_mAspirante from "./models/Cl_mAspirante.js";
 import Cl_mConcurso from "./models/Cl_mConcurso.js";
 
-const aspirantesData: [
-  string,
-  string,
-  string,
-  string,
-  string,
-  number,
-  number,
-  number,
-  number,
-][] = [
-  ["Kedwin", "Garrido", "111", "M", "2007-02-06", 75, 8, 2, 3],
-  ["Sebastian", "Figueroa", "222", "M", "2007-03-12", 70, 15, 4, 1],
-  ["Thiany", "Mendoza", "333", "F", "1950-10-11", 62, 22, 1, 1],
-  ["Rachel", "Medina", "444", "F", "1967-02-10", 65, 18, 5, 4],
-  ["Manuel", "Figueroa", "555", "M", "2005-05-20", 80, 10, 3, 2],
-  ["Everth", "Owkin", "666", "M", "1998-12-15", 85, 11, 0, 0],
-  ["Jonathan", "Querales", "777", "M", "2006-08-30", 72, 6, 2, 1],
-  ["Diana", "Pena", "888", "F", "2004-01-12", 58, 8, 1, 10],
-  ["Darwin", "Olmedo", "999", "M", "1985-06-25", 78, 25, 1, 2],
-  ["Jessica", "Contreras", "123", "F", "2007-11-05", 55, 7, 5, 4],
-  ["Isai", "Parra", "321", "M", "2000-03-14", 74, 10, 2, 0],
-  ["Lionel", "Cristiano", "546", "M", "1992-09-18", 82, 11, 2, 2],
-];
-
-const concurso = new Cl_mConcurso();
-let acumuladoR2 = "";
-
-for (let i = 0; i < aspirantesData.length; i++) {
-  const d = aspirantesData[i];
-
-  const aspirante = new Cl_mAspirante({
-    nombre: d[0],
-    apellido: d[1],
-    cedula: d[2],
-    sexo: d[3],
-    fechaNacimiento: d[4],
-    peso: d[5],
-    indiceA: d[6],
-    preparador: d[7],
-    diploma: d[8],
+let aspirante1 = new Cl_mAspirante({
+    nombre: "Ana",
+    apellido: "Gil",
+    cedula: "8888",
+    sexo: "F",
+    fechaNac: "06-15-2001",
+    puntosIA: 11,
+    puntosPrep: 5,
+    puntosDiplomas: 0,
+  }),
+  aspirante2 = new Cl_mAspirante({
+    nombre: "Mery",
+    apellido: "Paz",
+    cedula: "6666",
+    sexo: "F",
+    fechaNac: "07-25-1999",
+    puntosIA: 4,
+    puntosPrep: 0,
+    puntosDiplomas: 7,
+  }),
+  aspirante3 = new Cl_mAspirante({
+    nombre: "Juan",
+    apellido: "Sanz",
+    cedula: "9999",
+    sexo: "M",
+    fechaNac: "09-20-1980",
+    puntosIA: 7,
+    puntosPrep: 12,
+    puntosDiplomas: 0,
+  }),
+  aspirante4 = new Cl_mAspirante({
+    nombre: "Paty",
+    apellido: "Ortiz",
+    cedula: "3333",
+    sexo: "F",
+    fechaNac: "5-14-1970",
+    puntosIA: 18,
+    puntosPrep: 0,
+    puntosDiplomas: 5,
+  }),
+  aspirante5 = new Cl_mAspirante({
+    nombre: "Liz",
+    apellido: "Ramos",
+    cedula: "2222",
+    sexo: "F",
+    fechaNac: "01-03-2005",
+    puntosIA: 17,
+    puntosPrep: 8,
+    puntosDiplomas: 5,
+  }),
+  aspirante6 = new Cl_mAspirante({
+    nombre: "Raul",
+    apellido: "Méndez",
+    cedula: "5555",
+    sexo: "M",
+    fechaNac: "10-11-1995",
+    puntosIA: 7,
+    puntosPrep: 15,
+    puntosDiplomas: 1,
+  }),
+  aspirante7 = new Cl_mAspirante({
+    nombre: "Tony",
+    apellido: "Flores",
+    cedula: "7777",
+    sexo: "M",
+    fechaNac: "08-07-1999",
+    puntosIA: 5,
+    puntosPrep: 6,
+    puntosDiplomas: 7,
+  }),
+  aspirante8 = new Cl_mAspirante({
+    nombre: "Gaby",
+    apellido: "López",
+    cedula: "1111",
+    sexo: "F",
+    fechaNac: "07-19-1966",
+    puntosIA: 17,
+    puntosPrep: 3,
+    puntosDiplomas: 6,
   });
 
-  const puntos = concurso.procesarAspirante(aspirante);
-  const info = `${aspirante.nombre} ${aspirante.apellido}: ${puntos.toFixed(0)} pts`;
-  acumuladoR2 = acumuladoR2 === "" ? info : `${acumuladoR2}, ${info}`;
-}
+const concurso = new Cl_mConcurso();
 
-let lblAspiranteContratar = document.getElementById("lblAspiranteContratar");
-let lblMejorPuntaje = document.getElementById("lblMejorPuntaje");
-let lblListaAspirantes = document.getElementById("lblListaAspirantes");
-let lblPesoPromedio = document.getElementById("lblPesoPromedio");
+concurso.procesarAspirante(aspirante1);
+concurso.procesarAspirante(aspirante2);
+concurso.procesarAspirante(aspirante3);
+concurso.procesarAspirante(aspirante4);
+concurso.procesarAspirante(aspirante5);
+concurso.procesarAspirante(aspirante6);
+concurso.procesarAspirante(aspirante7);
+concurso.procesarAspirante(aspirante8);
 
-if (
-  lblAspiranteContratar &&
-  lblMejorPuntaje &&
-  lblListaAspirantes &&
-  lblPesoPromedio
-) {
-  lblAspiranteContratar.innerHTML = concurso.nombreContratar();
-  lblMejorPuntaje.innerHTML = concurso.mejorPuntaje().toFixed(2);
-
-  lblListaAspirantes.innerHTML = acumuladoR2;
-
-  lblPesoPromedio.innerHTML = `${concurso.pesoPromedio().toFixed(2)} kg`;
+let lblAspiranteContratar = document.getElementById("lblAspiranteContratar"),
+lblListaAspirantes = document.getElementById("lblListaAspirantes"),
+lblPromedioEdad = document.getElementById("lblPromedioEdad"),
+lblPuntosSubTotal = document.getElementById("lblPuntosSubTotal");
+if (lblAspiranteContratar && lblListaAspirantes && lblPromedioEdad && lblPuntosSubTotal) {
+  lblAspiranteContratar.innerHTML = concurso.nombreContratar;
+  lblListaAspirantes.innerHTML = `
+${aspirante1.nombre} ${aspirante1.apellido} - Puntaje: ${aspirante1.puntaje}<br>
+${aspirante2.nombre} ${aspirante2.apellido} - Puntaje: ${aspirante2.puntaje}<br>
+${aspirante3.nombre} ${aspirante3.apellido} - Puntaje: ${aspirante3.puntaje}<br>
+${aspirante4.nombre} ${aspirante4.apellido} - Puntaje: ${aspirante4.puntaje}<br>
+${aspirante5.nombre} ${aspirante5.apellido} - Puntaje: ${aspirante5.puntaje}<br>
+${aspirante6.nombre} ${aspirante6.apellido} - Puntaje: ${aspirante6.puntaje}<br>
+${aspirante7.nombre} ${aspirante7.apellido} - Puntaje: ${aspirante7.puntaje}<br>
+${aspirante8.nombre} ${aspirante8.apellido} - Puntaje: ${aspirante8.puntaje}
+  `;
+  lblPromedioEdad.innerHTML = concurso.promedioEdad.toFixed(2);
+  lblPuntosSubTotal.innerHTML = concurso.totalPuntosSubTotal.toString();
 }
 
 export default concurso;

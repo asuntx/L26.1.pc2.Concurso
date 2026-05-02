@@ -6,69 +6,93 @@ export default class Cl_vAspirante implements I_vAspirante {
   private inApellido: HTMLInputElement;
   private inCedula: HTMLInputElement;
   private inSexo: HTMLSelectElement;
-  private inFechaNacimiento: HTMLInputElement;
-  private inPeso: HTMLInputElement; 
-  private inIndiceA: HTMLInputElement;
-  private inPreparador: HTMLInputElement;
-  private inDiploma: HTMLInputElement;
+  private inFechaNac: HTMLInputElement;
+  private inPuntosIA: HTMLInputElement;
+  private inPuntosPrep: HTMLInputElement;
+  private inPuntosDiplomas: HTMLInputElement;
   private btCancelar: HTMLButtonElement;
   private btAceptar: HTMLButtonElement;
 
   constructor() {
-    this.vista = document.getElementById("seccionAspirante") as HTMLElement;
-    this.inNombre = document.getElementById("aspirante_inNombre") as HTMLInputElement;
-    this.inApellido = document.getElementById("aspirante_inApellido") as HTMLInputElement;
-    this.inCedula = document.getElementById("aspirante_inCedula") as HTMLInputElement;
-    this.inSexo = document.getElementById("aspirante_inSexo") as HTMLSelectElement;
-    this.inFechaNacimiento = document.getElementById("aspirante_inFechaNacimiento") as HTMLInputElement;
-    this.inPeso = document.getElementById("aspirante_inPeso") as HTMLInputElement; 
-    this.inIndiceA = document.getElementById("aspirante_inIndiceA") as HTMLInputElement;
-    this.inPreparador = document.getElementById("aspirante_inPreparador") as HTMLInputElement;
-    this.inDiploma = document.getElementById("aspirante_inDiploma") as HTMLInputElement;
-    this.btCancelar = document.getElementById("aspirante_btCancelar") as HTMLButtonElement;
-    this.btAceptar = document.getElementById("aspirante_btAceptar") as HTMLButtonElement;
+    this.vista = document.getElementById("aspirante") as HTMLElement;
+    this.inNombre = document.getElementById(
+      "aspirante_inNombre",
+    ) as HTMLInputElement;
+    this.inApellido = document.getElementById(
+      "aspirante_inApellido",
+    ) as HTMLInputElement;
+    this.inCedula = document.getElementById(
+      "aspirante_inCedula",
+    ) as HTMLInputElement;
+    this.inSexo = document.getElementById(
+      "aspirante_inSexo",
+    ) as HTMLSelectElement;
+    this.inFechaNac = document.getElementById(
+      "aspirante_inFechaNac",
+    ) as HTMLInputElement;
+    this.inPuntosIA = document.getElementById(
+      "aspirante_inPuntosIA",
+    ) as HTMLInputElement;
+    this.inPuntosPrep = document.getElementById(
+      "aspirante_inPuntosPrep",
+    ) as HTMLInputElement;
+    this.inPuntosDiplomas = document.getElementById(
+      "aspirante_inPuntosDiplomas",
+    ) as HTMLInputElement;
+    this.btCancelar = document.getElementById(
+      "aspirante_btCancelar",
+    ) as HTMLButtonElement;
+    this.btAceptar = document.getElementById(
+      "aspirante_btAceptar",
+    ) as HTMLButtonElement;
   }
 
-  get nombre(): string { return this.inNombre.value.trim(); }
-  get apellido(): string { return this.inApellido.value.trim(); }
-  get cedula(): string { return this.inCedula.value.trim(); }
-  get sexo(): string { return this.inSexo.value; }
-  get fechaNacimiento(): string { return this.inFechaNacimiento.value; }
-  get peso(): number { return Number(this.inPeso.value) || 0; } 
-  get indiceA(): number { return Number(this.inIndiceA.value) || 0; }
-  get preparador(): number { return Number(this.inPreparador.value) || 0; }
-  get diploma(): number { return Number(this.inDiploma.value) || 0; }
+  get nombre(): string {
+    return this.inNombre.value;
+  }
+  get apellido(): string {
+    return this.inApellido.value;
+  }
+  get cedula(): string {
+    return this.inCedula.value;
+  }
+  get sexo(): string {
+    return this.inSexo.value;
+  }
+  get fechaNac(): string {
+    return this.inFechaNac.value;
+  }
+  get puntosIA(): number {
+    return +this.inPuntosIA.value;
+  }
+  get puntosPrep(): number {
+    return +this.inPuntosPrep.value;
+  }
+  get puntosDiplomas(): number {
+    return +this.inPuntosDiplomas.value;
+  }
 
   onAceptar(callback: () => void): void {
-    this.btAceptar.onclick = (e) => {
-      e.preventDefault(); 
-      callback();
-    };
+    this.btAceptar.onclick = callback;
   }
 
   onCancelar(callback: () => void): void {
-    this.btCancelar.onclick = (e) => {
-      e.preventDefault();
-      callback();
-    };
+    this.btCancelar.onclick = callback;
   }
 
-  mostrar(): void { 
-    if (this.vista) {
-      this.vista.hidden = false; 
-      this.inNombre.value = "";
-      this.inApellido.value = "";
-      this.inCedula.value = "";
-      this.inFechaNacimiento.value = "";
-      this.inPeso.value = ""; 
-      this.inIndiceA.value = "";
-      this.inPreparador.value = "";
-      this.inDiploma.value = "";
-      this.inSexo.selectedIndex = 0;
-    }
+  mostrar(): void {
+    this.inNombre.value = "";
+    this.inApellido.value = "";
+    this.inCedula.value = "";
+    this.inFechaNac.value = "";
+    this.inPuntosIA.value = "";
+    this.inPuntosPrep.value = "";
+    this.inPuntosDiplomas.value = "";
+    this.inSexo.selectedIndex = 0;
+    if (this.vista) this.vista.hidden = false;
   }
 
-  ocultar(): void { 
-    if (this.vista) this.vista.hidden = true; 
+  ocultar(): void {
+    if (this.vista) this.vista.hidden = true;
   }
 }

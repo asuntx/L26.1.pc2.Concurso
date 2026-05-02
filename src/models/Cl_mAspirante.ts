@@ -1,69 +1,71 @@
 import Cl_mPersona from "./Cl_mPersona.js";
 
 export default class Cl_mAspirante extends Cl_mPersona {
-  private _indiceA: number;
-  private _preparador: number;
-  private _diploma: number;
+  private _puntosIA: number;
+  private _puntosPrep: number;
+  private _puntosDiplomas: number;
 
   constructor({
     nombre,
     apellido,
     cedula,
     sexo,
-    fechaNacimiento,
-    peso,
-    indiceA,
-    preparador,
-    diploma,
+    fechaNac,
+    puntosIA,
+    puntosPrep,
+    puntosDiplomas,
   }: {
     nombre: string;
     apellido: string;
     cedula: string;
     sexo: string;
-    fechaNacimiento: string;
-    peso: number;
-    indiceA: number;
-    preparador: number;
-    diploma: number;
+    fechaNac: string;
+    puntosIA: number;
+    puntosPrep: number;
+    puntosDiplomas: number;
   }) {
-    super({ nombre, apellido, cedula, sexo, fechaNacimiento, peso });
+    super({ nombre, apellido, cedula, sexo, fechaNac });
 
-    this._indiceA = indiceA;
-    this._preparador = preparador;
-    this._diploma = diploma;
-  }
-
-  set indiceA(value: number) {
-    this._indiceA = value;
-  }
-  get indiceA(): number {
-    return this._indiceA;
+    this._puntosIA = puntosIA;
+    this._puntosPrep = puntosPrep;
+    this._puntosDiplomas = puntosDiplomas;
   }
 
-  set preparador(value: number) {
-    this._preparador = value;
+  set puntosIA(value: number) {
+    this._puntosIA = value;
   }
-  get preparador(): number {
-    return this._preparador;
-  }
-
-  set diploma(value: number) {
-    this._diploma = value;
-  }
-  get diploma(): number {
-    return this._diploma;
+  get puntosIA(): number {
+    return this._puntosIA;
   }
 
-  get puntosPorEdad(): number {
-    const e = this.edad();
-    if (e < 30) return 10;
-    if (e < 40) return 5;
+  set puntosPrep(value: number) {
+    this._puntosPrep = value;
+  }
+  get puntosPrep(): number {
+    return this._puntosPrep;
+  }
+
+  set puntosDiplomas(value: number) {
+    this._puntosDiplomas = value;
+  }
+  get puntosDiplomas(): number {
+    return this._puntosDiplomas;
+  }
+
+  get puntosEdad(): number {
+    if (this.edad < 30) return 10;
+    if (this.edad < 40) return 5;
     return 0;
   }
 
-  get puntajeTotal(): number {
-    let total =
-      this._indiceA + this._diploma + this._preparador + this.puntosPorEdad;
-    return total > 30 ? 30 : total;
+  get puntosSubTotal(): number {
+    return (
+      this._puntosIA + this._puntosPrep + this._puntosDiplomas + this.puntosEdad
+    );
+  }
+
+  get puntaje(): number {
+    if (this.puntosSubTotal >= 30) return 30;
+    return this.puntosSubTotal;
   }
 }
